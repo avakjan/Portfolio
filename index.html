@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Avakjan - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="fullpage" id="greeting-section">
+        <div class="header-container">
+            <h1 class="large-header-hey">Hey, I'm</h1>
+            <h1 class="large-header-name">German Avakjan</h1>
+        </div>
+    </div>    
+    <div class="fullpage fade-in-scroll" id="introduction-section">
+        <div class="intro-content">
+            <img src="german-avakjan.jpg" alt="German Avakjan" class="profile-picture">
+            <div class="intro-text ">
+                <p>I'm studying computer science at TalTech University. 
+                    My journey in tech started out of curiosity about how software can change things, 
+                    and now, I'm all about creating meaningful solutions. I enjoy problem-solving and always look for new learning opportunities. 
+                    These days, I'm really into software development, with a goal to contribute to projects that make a positive impact. 
+                    Thanks for stopping by!
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="fullpage" id="portfolio-section">
+        <h1 class="portfolio-header fade-in-scroll">Portfolio</h1>
+        <div class="portfolio-entry fade-in-scroll">
+            <h3 class="portfolio-web fade-in-scroll">Web development</h3>
+            <a id="myImgLink" href="https://github.com/avakjan/SecureVault">
+                <img src="secure-vault.jpg" alt="Secure Vault Project git" style="cursor:pointer;">
+            </a>
+            <a href="https://github.com/avakjan/Contoso-University" target="_blank">
+                <img src="contoso.png" alt="Contoso Univercity Project git">
+            </a>
+            <h3 class="portfolio-graphic fade-in-scroll">Graphic Design</h3>
+            <a href="https://www.instagram.com/moncelour/" target="_blank">
+                <img src="moncelour.png" alt="moncelouR instagram profile" width="200px">
+            </a>
+            <h4>moncelouR</h4>
+            <h5>My journey in learning Adobe Photoshop possibilities and discovering the world of graphic design. 
+                Work pieces can be found by clicking on the logo above.
+            </h5>
+        </div>
+    </div>
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Secure Vault</h2>
+          <!-- You can put more content here such as text or images -->
+        </div>
+      
+    </div>
+    <div class="fullpage" id="social-section">
+        <h1 class="social-section fade-in-scroll">Social</h1>
+        <div class="social-section-entry fade-in-scroll">
+            <div class="social-item">
+                <h3 class="social-section-linkedin">LinkedIn</h3>
+                <a href="https://www.linkedin.com/in/germanavakjan/" target="_blank">
+                    <img src="linkedin-logo.png" alt="LinkedIn" class="social-section-link" width="86px">
+                </a>
+            </div>
+            <div class="social-item">
+                <h3 class="social-section-github">GitHub</h3>
+                <a href="https://github.com/avakjan" target="_blank">
+                    <img src="github-logo.png" alt="GitHub" class="social-section-link" width="86px">
+                </a>
+            </div>
+            <div class="social-item">
+                <h3 class="social-section-email">Email</h3>
+                <p class="social-section-email-address" onclick="copyEmailToClipboard()">
+                    german@avakjan.ee
+                </p>
+                
+                <div id="emailCopyNotification" class="email-copy-notification">
+                  Email copied!
+                </div>            
+            </div>
+        </div>        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
