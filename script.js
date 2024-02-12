@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Options for the IntersectionObserver
     const options = {
       root: null, // Use the viewport as the root
-      threshold: 0, // Percentage of target's visibility the observer's callback should execute
+      threshold: 0.3, // Percentage of target's visibility the observer's callback should execute
       rootMargin: "0px" // Margin around the root
     };
   
