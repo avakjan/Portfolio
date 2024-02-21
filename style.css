@@ -222,6 +222,28 @@ body {
     z-index: 1000; /* Make sure it's on top */
 }
 
+.architecture-pic {
+    position: relative;
+    left: 750px;
+    bottom: 100px;
+    width: 430px;
+    height: 242px;
+}
+
+.architecture-header {
+    position: relative;
+    left: 895px;
+    width: 286px;
+    bottom: 100px;
+}
+
+.architetcure-text {
+    position: relative;
+    text-align: right;
+    left: 580px;
+    bottom: 100px;
+}
+
 @keyframes bounce {
     0%, 20%, 50%, 80%, 100% {
         transform: translateY(0);
@@ -249,8 +271,6 @@ body {
     overflow: hidden; /* Hide the scrollbar and prevent scrolling */
 }
 
-
-/* Modal Content */
 .modal-content-securevault {
     background: linear-gradient(to bottom, #7dacd6 0%, #8db4d5 30%, #F0F9FF 70%, #F0F9FF 100%); /* Linear gradient background */
     padding: 20px;    
@@ -260,6 +280,47 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 5px; /* Optional: if you want rounded corners */
 }
+
+.modal-architecture {
+    display: flex; /* Keep using flex for center alignment */
+    opacity: 0; /* Start with the modal fully transparent */
+    visibility: hidden; /* Hide the modal initially */
+    transition: visibility 0s linear 0.25s, opacity 0.25s linear, transform 0.25s linear; /* Smooth transition effect */
+    transform: scale(0.95); /* Start slightly scaled down */
+    position: fixed; /* Ensure modal is fixed in the viewport */
+    z-index: 1000; /* High z-index to stay on top */
+    left: 0; /* Align to the left edge */
+    top: 0; /* Align to the top edge */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background: linear-gradient(to bottom, #75444abb 0%, #741a1abe 30%, #923535ad 70%, #79000096 100%); /* Fancy linear gradient background */
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Prevent scrolling within the modal */
+}
+
+.modal-architecture.active {
+    opacity: 1;
+    visibility: visible; /* Make the modal fully visible */
+    transition-delay: 0s; /* Apply transition immediately */
+    /* Removed the transform and cursor properties */
+}
+
+.modal-content-architecture img {
+    padding-left: 100px;
+    object-fit: contain; /* Ensure the full image is always visible */
+    transition: transform 0.3s ease; /* Smooth transition for the zoom effect */
+    cursor: zoom-in; /* Initial cursor for zoom-in action on images */
+}
+
+.zoomed-in {
+    transform: scale(2); /* Zoom the image */
+    transform-origin: center; /* Scale from the center of the image */
+    z-index: 1010; /* Ensure the zoomed image is above other content */
+    cursor: zoom-out; /* Cursor to indicate zoom-out action */
+    transition: transform 0.3s ease; /* Smooth transition for the zoom effect */
+}
+
 
 /* The Close Button */
 .close {

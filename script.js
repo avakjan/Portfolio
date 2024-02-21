@@ -30,37 +30,46 @@ document.addEventListener('DOMContentLoaded', () => {
       observer.observe(target);
     });
 
-
-    // Get the modal
-    var modal = document.getElementById("myModal");
-
-    // Get the link that opens the modal
-    var imgLink = document.getElementById("myImgLink");
-
-    // Get the <span> element that closes the modal
+    //MODAL
+    var modal1 = document.getElementById("myModal-securevault");
+    var imgLink1 = document.getElementById("myImgLink-securevault");
     var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks on the image, open the modal
-    imgLink.onclick = function(event) {
+    imgLink1.onclick = function(event) {
       event.preventDefault(); // Prevent default anchor action
-      modal.style.display = "flex"; // Use 'flex' to enable center alignment
+      modal1.style.display = "flex"; // Use 'flex' to enable center alignment
       document.body.style.overflow = 'hidden'; // Disable body scroll
     }
 
-    // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
-      modal.style.display = "none";
+      modal1.style.display = "none";
       document.body.style.overflow = 'auto'; // Re-enable body scroll
     }
 
-    // When the user clicks anywhere outside of the modal, close it
+    //MODAL2
+    var modal2 = document.getElementById("myModal-architecture");
+    var imgLink2 = document.getElementById("myImgLink-architecture");
+    var span2 = document.getElementsByClassName("close")[1]; // Assuming the second modal's close button is the next in the array
+
+    imgLink2.onclick = function(event) {
+      event.preventDefault();
+      modal2.classList.add("active"); // Use 'active' class to show modal
+      document.body.style.overflow = 'hidden';
+    };
+
+    span2.onclick = function() {
+      modal2.classList.remove("active");
+      document.body.style.overflow = 'auto';
+    };
+
+    // Updated close modal when clicking outside
     window.onclick = function(event) {
-      if (event.target === modal) {
-        modal.style.display = "none";
-        document.body.style.overflow = 'auto'; // Re-enable body scroll
+      if (event.target === modal2) {
+        modal2.classList.remove("active");
+        document.body.style.overflow = 'auto';
       }
-    }
-});  
+    };
+}); 
 
 function copyEmailToClipboard() {
   // Create a dummy input to copy the email address from
@@ -82,3 +91,52 @@ function copyEmailToClipboard() {
     notification.style.display = 'none';
   }, 2000);
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  var images = document.querySelectorAll('.modal-content-architecture img');
+
+  images.forEach(function(img) {
+      img.style.cursor = 'zoom-in'; // Set initial cursor to indicate zoom-in action
+      img.addEventListener('click', function() {
+          // Get the bounding rectangle of the image
+          var rect = img.getBoundingClientRect();
+          // Get the center point of the viewport
+          var viewportCenterX = window.innerWidth / 2;
+          var viewportCenterY = window.innerHeight / 2;
+
+          // Determine the transform-origin based on the position relative to the center
+          var originX = (rect.left + rect.width / 2) > viewportCenterX ? '100%' : '0%';
+          var originY = (rect.top + rect.height / 2) > viewportCenterY ? '100%' : '0%';
+
+          // Set the transform-origin based on the position
+          img.style.transformOrigin = `${originX} ${originY}`;
+
+          // Check if the image is already zoomed-in
+          if (img.classList.contains('zoomed-in')) {
+              // If zoomed-in, zoom out
+              img.classList.remove('zoomed-in');
+              img.style.cursor = 'zoom-in';
+          } else {
+              // Remove zoom from all images
+              images.forEach(function(innerImg) {
+                  innerImg.classList.remove('zoomed-in');
+                  innerImg.style.cursor = 'zoom-in';
+              });
+              // Zoom in the clicked image
+              img.classList.add('zoomed-in');
+              img.style.cursor = 'zoom-out';
+          }
+      });
+  });
+
+  // Close zoom on clicking elsewhere in the modal
+  var modal = document.getElementById("myModal-architecture");
+  modal.addEventListener('click', function(event) {
+      if (!event.target.classList.contains('zoomed-in')) {
+          images.forEach(function(img) {
+              img.classList.remove('zoomed-in');
+              img.style.cursor = 'zoom-in';
+          });
+      }
+  });
+});
