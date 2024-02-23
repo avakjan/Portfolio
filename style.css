@@ -1,38 +1,36 @@
 body, html {
     margin: 0;
     padding: 0;
+    width: 100%;
 }
 
 body {
     
     background: linear-gradient(to bottom, #7dacd6 5%, #f4faff 35%, #f4faff 100%);
-    background-attachment: scroll; /* Scrolls with the content */
+    background-attachment: scroll;
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
 }
 
 .fullpage {
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     min-height: 50vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    text-align: center;
-    padding: 50px;
-    padding-bottom: 100px;
     box-sizing: border-box;
 }
 
 .header-container {
-    display: flex; /* Use flexbox to arrange children */
-    align-items: baseline; /* Align the text baselines */
-    gap: 20px; /* Adjust the gap to your preference */
+    display: flex; 
+    align-items: baseline;
+    gap: 20px; 
 }
 
 .large-header-hey {
-    font-weight: 310; /* Adjusted font weight */
-    font-size: 3.5em; /* Adjusted font size */
+    font-weight: 310;
+    font-size: 3.5em;
     background-image: linear-gradient(to bottom, #1B006B, #3C85B0);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -41,7 +39,7 @@ body {
 }
 
 .large-header-name {
-    font-size: 3.5em; /* Same font size for alignment */
+    font-size: 3.5em;
     background-image: linear-gradient(to bottom, #48367D, #37a9ad);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -54,7 +52,7 @@ body {
     flex-grow: 1;
     align-items: center;
     justify-content: center;
-    gap: 40px; /* Increased space */
+    gap: 40px; 
 }
 
 .intro-text {
@@ -62,16 +60,16 @@ body {
     padding-left: 30px;
     flex-grow: 1;
     text-align: left;
-    max-width: 650px; /* Increased max-width */
+    max-width: 650px;
     color: #8b8b8b;
-    font-size: 1.7em; /* Increased font size */
-    line-height: 1.4; /* Adjust line height for readability */
+    font-size: 1.7em;
+    line-height: 1.4;
 }
 
 .profile-picture {
     flex-shrink: 0;
-    height: 523px; /* Increased height */
-    width: 400px; /* Increased width for a larger image */
+    height: 523px;
+    width: 400px;
     border-radius: 30px;
     border: none;
     box-shadow: none;
@@ -79,63 +77,112 @@ body {
 
 
 #portfolio-section {
-    display: block;
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 150px;
+    padding-left: 300px;
+    width: calc(100% - 300px);
 }
 
-.portfolio-header {
-    padding-left: 295px;
+.portfolio-entry, .graphic-design-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+}
+
+.portfolio-header, .portfolio-web, .portfolio-graphic {
+    font-weight: lighter;
     font-size: 4em;
-    font-weight: 10;
-    background-image: linear-gradient(to bottom, #1B006B, #3C85B0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent; 
-}
-
-.portfolio-graphic{
-    margin-top: 78px; 
-    padding-top: 0px;
-}
-
-.portfolio-web, .portfolio-graphic {
-    padding-top: 30px;
-    padding-left: 298px;
-    font-size: 3em;
-    font-weight: 50;
     background-image: linear-gradient(to bottom, #1B006B, #3C85B0);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
+    margin-left: 0;
+    padding-left: 0;
 }
 
-.portfolio-entry img {
-    margin-left: 300px;
-    margin-bottom: 40px;
-    border-radius: 20px;
-    max-width: 50%;
+.portfolio-web, .portfolio-graphic { 
+    font-size: 2.5em;
 }
 
-.fullpage h4 {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: #1d1d1d;
-    margin-top: -15px;
-    margin-left: 300px;
-    margin-bottom: -35px;
+.portfolio-entry img, .moncelour-section a, .architecture-section img {
+    height: auto; 
+    border-radius: 20px; 
+}
+
+#myImgLink-securevault {
+    max-width: 60%;
+}
+
+/*MONCELOUR*/
+.moncelour-section {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.moncelour-section-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px; 
+    max-width: 40%;
+}
+
+.moncelour-header {
     font-weight: 600;
-    font-size: 1.7em;
+    font-size: 3vh;
+    margin-bottom: auto;
+    margin-top: 0;
 }
 
-.fullpage h5 {
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: #8b8b8b;
-    margin-left: 300px;
-    font-weight: 400;
-    font-size: 1.5em;
-    max-width: 600px;
+.moncelour-text {
+    color: #707f9ca6;
+    font-size: 2.4vh;
 }
+
+#myImgLink-moncelour {
+    max-width: 10vw;
+}
+
+/*ARCHITECTURE*/
+.architecture-section {
+    display: flex; 
+    align-items: center;
+    padding: 0;
+    margin-top: 10%;
+    margin-left: 15%;
+}
+
+.architecture-section-text {
+    padding-right: 20px; 
+    max-width: 57%;
+    
+}
+
+.architecture-header {
+    font-weight: 600;
+    font-size: 3vh;
+    margin-bottom: auto;
+    margin-top: 0;
+    text-align: right;
+}
+
+.architecture-text {
+    color: #707f9ca6;
+    text-align: right;
+    font-size: 2.4vh;
+}
+
+#myImgLink-architecture {
+    max-width: 40%;
+    height: auto;
+}
+
+
+
 
 #see-more {
     padding: 10px 20px;
@@ -145,17 +192,17 @@ body {
 }
 
 #introduction-section {
-    display: block; /* Ensure content is not hidden */
+    display: block;
 }
 
 #greeting-section {
     font-size: x-large;
-    display: flex; /* Use flexbox to arrange children */
-    flex-direction: column; /* Stack children vertically */
-    align-items: center; /* Center children horizontally */
-    justify-content: center; /* Center children vertically */
-    height: 100vh; /* Make the section fill the height of the viewport */
-    text-align: center; /* Center text */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; 
+    text-align: center;
 }
 
 #portfolio-section {
@@ -175,18 +222,18 @@ body {
 }
 
 .social-section-entry {
-    display: flex; /* Use flexbox */
+    display: flex;
     margin-left: -390px;
-    justify-content: center; /* Center items horizontally */
-    align-items: center; /* Center items vertically */
+    justify-content: center;
+    align-items: center;
     gap: 20px;
 }
 
 .social-item {
-    display: flex; /* Use flexbox */
-    flex-direction: column; /* Stack logo and text vertically */
-    align-items: center; /* Center items */
-    padding: 0 10px; /* Spacing around items */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 10px;
 }
 
 .social-section-linkedin .social-section-github {
@@ -208,40 +255,18 @@ body {
     text-align:center;
 }
 
-/* Notification style */
+
 .email-copy-notification {
-    display: none; /* Hidden by default */
-    position: fixed; /* Positioned relative to the viewport */
-    bottom: 20px; /* 20px from the bottom */
-    left: 100%; /* Centered horizontally */
-    background-color: #f8f8f8; /* Light background */
-    color: #333; /* Dark text */
-    padding: 10px 20px; /* Padding around text */
-    border-radius: 5px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Box shadow for aesthetics */
-    z-index: 1000; /* Make sure it's on top */
-}
-
-.architecture-pic {
-    position: relative;
-    left: 750px;
-    bottom: 100px;
-    width: 430px;
-    height: 242px;
-}
-
-.architecture-header {
-    position: relative;
-    left: 895px;
-    width: 286px;
-    bottom: 100px;
-}
-
-.architetcure-text {
-    position: relative;
-    text-align: right;
-    left: 580px;
-    bottom: 100px;
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 100%;
+    background-color: #f8f8f8;
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000; 
 }
 
 @keyframes bounce {
@@ -256,73 +281,71 @@ body {
     }
 }
 
-/* The Modal (background) */
 .modal-securevault {
-    display: none; /* Ensure the modal is not displayed by default */
-    position: fixed; /* Stay in place */
+    display: none;
+    position: fixed;
     z-index: 1000;
     left: -90px;
     top: 0;
-    width: 110%; /* Full width */
-    height: 100%; /* Full height */
-    background: rgba(128, 128, 128, 0.7); /* Grey background with opacity */
+    width: 110%;
+    height: 100%;
+    background: rgba(128, 128, 128, 0.7);
     align-items: center;
     justify-content: center;
-    overflow: hidden; /* Hide the scrollbar and prevent scrolling */
+    overflow: hidden; 
 }
 
 .modal-content-securevault {
-    background: linear-gradient(to bottom, #7dacd6 0%, #8db4d5 30%, #F0F9FF 70%, #F0F9FF 100%); /* Linear gradient background */
+    background: linear-gradient(to bottom, #7dacd6 0%, #8db4d5 30%, #F0F9FF 70%, #F0F9FF 100%);
     padding: 20px;    
     border: 1px solid #888;
-    width: 70%; /* You can adjust this as needed */
+    width: 70%;
     height: 85%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 5px; /* Optional: if you want rounded corners */
+    border-radius: 5px;
 }
 
 .modal-architecture {
-    display: flex; /* Keep using flex for center alignment */
-    opacity: 0; /* Start with the modal fully transparent */
-    visibility: hidden; /* Hide the modal initially */
-    transition: visibility 0s linear 0.25s, opacity 0.25s linear, transform 0.25s linear; /* Smooth transition effect */
-    transform: scale(0.95); /* Start slightly scaled down */
-    position: fixed; /* Ensure modal is fixed in the viewport */
-    z-index: 1000; /* High z-index to stay on top */
-    left: 0; /* Align to the left edge */
-    top: 0; /* Align to the top edge */
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background: linear-gradient(to bottom, #75444abb 0%, #741a1abe 30%, #923535ad 70%, #79000096 100%); /* Fancy linear gradient background */
+    display: flex;
+    opacity: 0; 
+    visibility: hidden;
+    transition: visibility 0s linear 0.25s, opacity 0.25s linear, transform 0.25s linear;
+    transform: scale(0.95); 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%;
+    background: linear-gradient(to bottom, #75444abb 0%, #741a1abe 30%, #923535ad 70%, #79000096 100%);
     align-items: center;
     justify-content: center;
-    overflow: hidden; /* Prevent scrolling within the modal */
+    overflow: hidden;
 }
 
 .modal-architecture.active {
     opacity: 1;
-    visibility: visible; /* Make the modal fully visible */
-    transition-delay: 0s; /* Apply transition immediately */
-    /* Removed the transform and cursor properties */
+    visibility: visible; 
+    transition-delay: 0s;
 }
 
 .modal-content-architecture img {
     padding-left: 100px;
-    object-fit: contain; /* Ensure the full image is always visible */
-    transition: transform 0.3s ease; /* Smooth transition for the zoom effect */
-    cursor: zoom-in; /* Initial cursor for zoom-in action on images */
+    object-fit: contain; 
+    transition: transform 0.3s ease;
+    cursor: zoom-in; 
 }
 
 .zoomed-in {
-    transform: scale(2); /* Zoom the image */
-    transform-origin: center; /* Scale from the center of the image */
-    z-index: 1010; /* Ensure the zoomed image is above other content */
-    cursor: zoom-out; /* Cursor to indicate zoom-out action */
-    transition: transform 0.3s ease; /* Smooth transition for the zoom effect */
+    transform: scale(2);
+    transform-origin: center;
+    z-index: 1010; 
+    cursor: zoom-out;
+    transition: transform 0.3s ease;
 }
 
 
-/* The Close Button */
+
 .close {
     color: #755fb9b6;
     float: right;
@@ -339,7 +362,7 @@ body {
     cursor: pointer;
 }
 
-/* Header in the modal */
+
 .modal-content-securevault h2 {
     text-align: center;
     margin-top: 0;
@@ -352,7 +375,7 @@ body {
     font-size: 3em;
 }
 
-/* Initial state of elements, they are moved down and have lower opacity */
+
 .fade-in-scroll {
     opacity: 0;
     transform: translateY(20px);
@@ -360,8 +383,26 @@ body {
     will-change: opacity, transform;
 }
 
-/* State of elements when they are in the viewport */
+
 .fade-in-scroll.visible {
     opacity: 1;
     transform: translateY(0px);
-}  
+}
+
+@media (max-width: 768px) {
+    .portfolio-header, .portfolio-web, .portfolio-graphic {
+        font-size: 5vw;
+    }
+
+    .graphic-design-section {
+        flex-direction: column;
+    }
+
+    #myImgLink-moncelour {
+        max-width: 50%; 
+    }
+
+    .moncelour-section {
+        flex-direction: column;
+    }
+}
