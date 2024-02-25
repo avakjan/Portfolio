@@ -1,142 +1,133 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Options for the IntersectionObserver
-    const options = {
-      root: null, // Use the viewport as the root
-      threshold: 0.3, // Percentage of target's visibility the observer's callback should execute
-      rootMargin: "0px" // Margin around the root
-    };
-  
-    // Callback function for IntersectionObserver
-    const callback = (entries, observer) => {
-      entries.forEach(entry => {
-        // If the entry is intersecting (visible)
-        if (entry.isIntersecting) {
-          // Add the 'visible' class to the target
-          entry.target.classList.add('visible');
-          // Optional: Unobserve the target to prevent future invocations
-          // observer.unobserve(entry.target);
-        }
-      });
-    };
-  
-    // Create the observer instance and pass in the options and the callback
-    const observer = new IntersectionObserver(callback, options);
-  
-    // Target elements to observe
-    const targets = document.querySelectorAll('.fade-in-scroll');
-  
-    // Observe each target
-    targets.forEach(target => {
-      observer.observe(target);
+
+  const options = {
+    root: null,
+    threshold: 0.3,
+    rootMargin: "0px"
+  };
+
+  const callback = (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
     });
+  };
 
-    //MODAL
-    var modal1 = document.getElementById("myModal-securevault");
-    var imgLink1 = document.getElementById("myImgLink-securevault");
-    var span = document.getElementsByClassName("close")[0];
+  const observer = new IntersectionObserver(callback, options);
+  const targets = document.querySelectorAll('.fade-in-scroll');
+  targets.forEach(target => observer.observe(target));
 
-    imgLink1.onclick = function(event) {
-      event.preventDefault(); // Prevent default anchor action
-      modal1.style.display = "flex"; // Use 'flex' to enable center alignment
-      document.body.style.overflow = 'hidden'; // Disable body scroll
-    }
+  //MODAL1
+  const modal1 = document.getElementById("myModal-securevault");
+  const imgLink1 = document.getElementById("myImgLink-securevault");
+  const span1 = document.getElementsByClassName("close")[0];
 
-    span.onclick = function() {
-      modal1.style.display = "none";
-      document.body.style.overflow = 'auto'; // Re-enable body scroll
-    }
+  imgLink1.onclick = function() {
+    modal1.style.display = "flex";
+    document.body.style.overflow = 'hidden';
+  };
 
-    //MODAL2
-    var modal2 = document.getElementById("myModal-architecture");
-    var imgLink2 = document.getElementById("myImgLink-architecture");
-    var span2 = document.getElementsByClassName("close")[1]; // Assuming the second modal's close button is the next in the array
+  span1.onclick = function() {
+    modal1.style.display = "none";
+    document.body.style.overflow = 'auto';
+  };
 
-    imgLink2.onclick = function(event) {
-      event.preventDefault();
-      modal2.classList.add("active"); // Use 'active' class to show modal
-      document.body.style.overflow = 'hidden';
-    };
+  //MODAL2
+  const modal2 = document.getElementById("myModal-architecture");
+  const imgLink2 = document.getElementById("myImgLink-architecture");
+  const span2 = document.getElementsByClassName("close")[1];
 
-    span2.onclick = function() {
+  imgLink2.onclick = function() {
+    modal2.classList.add("active");
+    document.body.style.overflow = 'hidden';
+  };
+
+  span2.onclick = function() {
+    modal2.classList.remove("active");
+    document.body.style.overflow = 'auto';
+    resetZoomOnImages();
+  };
+
+  modal2.addEventListener('click', function(event) {
+    if (event.target === modal2) {
       modal2.classList.remove("active");
       document.body.style.overflow = 'auto';
-    };
+      resetZoomOnImages();
+    }
+  });
 
-    // Updated close modal when clicking outside
-    window.onclick = function(event) {
-      if (event.target === modal2) {
-        modal2.classList.remove("active");
-        document.body.style.overflow = 'auto';
+  document.querySelector(".modal-content-architecture").addEventListener('click', function(event) {
+    if (event.currentTarget === event.target) {
+      modal2.classList.remove("active");
+      document.body.style.overflow = 'auto';
+      resetZoomOnImages();
+    }
+  });
+
+  document.querySelectorAll(".modal-content-architecture img").forEach(img => {
+    img.addEventListener('click', function(event) {
+      event.stopPropagation();
+    });
+  });
+
+  const images = document.querySelectorAll('.modal-content-architecture img');
+
+  images.forEach(function(img) {
+    img.addEventListener('click', function() {
+
+      if (!img.classList.contains('zoom-in')) {
+
+        var imgRect = img.getBoundingClientRect();
+        var centerX = (window.innerWidth / 2) - (imgRect.left + imgRect.width / 2);
+        var centerY = (window.innerHeight / 2) - (imgRect.top + imgRect.height / 2);
+
+        img.style.transform = `translate(${centerX}px, ${centerY}px) scale(2)`;
+        img.style.transition = 'transform 0.5s ease-in-out';
+        img.classList.add('zoom-in');
+        img.style.cursor = 'zoom-out';
+      } else {
+
+        img.style.transform = '';
+        img.classList.remove('zoom-in');
+        img.style.cursor = 'zoom-in';
       }
-    };
+
+      images.forEach(otherImg => {
+        if (otherImg !== img) {
+          otherImg.style.transform = '';
+          otherImg.classList.remove('zoom-in');
+          otherImg.style.cursor = 'zoom-in';
+        }
+      });
+    });
+  });
+
+  function resetZoomOnImages() {
+    const images = document.querySelectorAll('.modal-content-architecture img');
+    images.forEach(img => {
+      img.classList.remove('zoom-in');
+      img.style.transform = '';
+      img.style.cursor = 'zoom-in';
+    });
+  }
 }); 
 
 function copyEmailToClipboard() {
-  // Create a dummy input to copy the email address from
+
   var dummy = document.createElement('input'),
       text = window.getSelection().toString();
   
   document.body.appendChild(dummy);
-  dummy.value = text.length > 0 ? text : 'german@avakjan.ee'; // In case user selects some text, that will be copied instead of the email.
+  dummy.value = text.length > 0 ? text : 'german@avakjan.ee';
   dummy.select();
   document.execCommand('copy');
   document.body.removeChild(dummy);
   
-  // Show the notification
   var notification = document.getElementById('emailCopyNotification');
   notification.style.display = 'block';
   
-  // After 2 seconds, hide the notification
   setTimeout(function() {
     notification.style.display = 'none';
   }, 2000);
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-  var images = document.querySelectorAll('.modal-content-architecture img');
-
-  images.forEach(function(img) {
-      img.style.cursor = 'zoom-in'; // Set initial cursor to indicate zoom-in action
-      img.addEventListener('click', function() {
-          // Get the bounding rectangle of the image
-          var rect = img.getBoundingClientRect();
-          // Get the center point of the viewport
-          var viewportCenterX = window.innerWidth / 2;
-          var viewportCenterY = window.innerHeight / 2;
-
-          // Determine the transform-origin based on the position relative to the center
-          var originX = (rect.left + rect.width / 2) > viewportCenterX ? '100%' : '0%';
-          var originY = (rect.top + rect.height / 2) > viewportCenterY ? '100%' : '0%';
-
-          // Set the transform-origin based on the position
-          img.style.transformOrigin = `${originX} ${originY}`;
-
-          // Check if the image is already zoomed-in
-          if (img.classList.contains('zoomed-in')) {
-              // If zoomed-in, zoom out
-              img.classList.remove('zoomed-in');
-              img.style.cursor = 'zoom-in';
-          } else {
-              // Remove zoom from all images
-              images.forEach(function(innerImg) {
-                  innerImg.classList.remove('zoomed-in');
-                  innerImg.style.cursor = 'zoom-in';
-              });
-              // Zoom in the clicked image
-              img.classList.add('zoomed-in');
-              img.style.cursor = 'zoom-out';
-          }
-      });
-  });
-
-  // Close zoom on clicking elsewhere in the modal
-  var modal = document.getElementById("myModal-architecture");
-  modal.addEventListener('click', function(event) {
-      if (!event.target.classList.contains('zoomed-in')) {
-          images.forEach(function(img) {
-              img.classList.remove('zoomed-in');
-              img.style.cursor = 'zoom-in';
-          });
-      }
-  });
-});

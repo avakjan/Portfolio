@@ -9,7 +9,6 @@ body {
     background: linear-gradient(to bottom, #7dacd6 5%, #f4faff 35%, #f4faff 100%);
     background-attachment: scroll;
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
 }
 
 .fullpage {
@@ -116,7 +115,7 @@ body {
     max-width: 60%;
 }
 
-/*MONCELOUR*/
+
 .moncelour-section {
     display: flex;
     align-items: center;
@@ -147,7 +146,7 @@ body {
     max-width: 10vw;
 }
 
-/*ARCHITECTURE*/
+
 .architecture-section {
     display: flex; 
     align-items: center;
@@ -159,7 +158,6 @@ body {
 .architecture-section-text {
     padding-right: 20px; 
     max-width: 57%;
-    
 }
 
 .architecture-header {
@@ -180,9 +178,6 @@ body {
     max-width: 40%;
     height: auto;
 }
-
-
-
 
 #see-more {
     padding: 10px 20px;
@@ -310,17 +305,28 @@ body {
     opacity: 0; 
     visibility: hidden;
     transition: visibility 0s linear 0.25s, opacity 0.25s linear, transform 0.25s linear;
-    transform: scale(0.95); 
+    transform: scale(1); 
     position: fixed; 
     z-index: 1000; 
     left: 0; 
     top: 0; 
     width: 100%; 
     height: 100%;
-    background: linear-gradient(to bottom, #75444abb 0%, #741a1abe 30%, #923535ad 70%, #79000096 100%);
+    background: linear-gradient(to bottom, #75444acb 0%, #741a1acb 30%, #923535c7 70%, #790000b0 100%);
     align-items: center;
     justify-content: center;
     overflow: hidden;
+}
+
+.modal-content-architecture {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    padding: 20px;
+    box-sizing: border-box;
+    height: auto;
 }
 
 .modal-architecture.active {
@@ -330,7 +336,13 @@ body {
 }
 
 .modal-content-architecture img {
-    padding-left: 100px;
+    width: calc(33.333% - 0px);
+    max-width: 20%;
+    max-height: 10%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    flex: 0 0 auto;
+    align-items: center;
     object-fit: contain; 
     transition: transform 0.3s ease;
     cursor: zoom-in; 
@@ -347,13 +359,14 @@ body {
 
 
 .close {
-    color: #755fb9b6;
+    color: #775ec4cb;
     float: right;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-right: 15px;
-    font-size: 30px;
-    font-weight: bold;
+    position: absolute;
+    font-size: 60px;
+    font-weight: light;
+    right: 0.5em;
+    top: 0.5em;
+    z-index: 1011;
 }
 
 .close:hover, .close:focus {
@@ -361,7 +374,6 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
-
 
 .modal-content-securevault h2 {
     text-align: center;
@@ -375,14 +387,12 @@ body {
     font-size: 3em;
 }
 
-
 .fade-in-scroll {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 2s ease-out, transform 1.5s ease-out;
     will-change: opacity, transform;
 }
-
 
 .fade-in-scroll.visible {
     opacity: 1;
@@ -405,4 +415,18 @@ body {
     .moncelour-section {
         flex-direction: column;
     }
+}
+
+.modal-content-architecture img:hover {
+    transform: scale(1.1);
+    z-index: 10;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.modal-content-architecture img.zoom-in {
+    transform: scale(2);
+    z-index: 20;
+    cursor: zoom-out;
+    transition: transform 0.3s ease;
 }
