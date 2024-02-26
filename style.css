@@ -90,6 +90,10 @@ body {
     align-items: flex-start; 
 }
 
+.graphic-design-section {
+    margin-top: 8%;
+}
+
 .portfolio-header, .portfolio-web, .portfolio-graphic {
     font-weight: lighter;
     font-size: 4em;
@@ -113,6 +117,7 @@ body {
 
 #myImgLink-securevault {
     max-width: 60%;
+    box-shadow: -15px 15px 40px -4px rgb(68 113 46 / 30%);
 }
 
 
@@ -131,7 +136,7 @@ body {
 }
 
 .moncelour-header {
-    font-weight: 600;
+    font-weight: 400;
     font-size: 3vh;
     margin-bottom: auto;
     margin-top: 0;
@@ -144,6 +149,7 @@ body {
 
 #myImgLink-moncelour {
     max-width: 10vw;
+    box-shadow: -6px 8px 46px -7px rgb(145 102 126 / 61%);
 }
 
 
@@ -161,7 +167,7 @@ body {
 }
 
 .architecture-header {
-    font-weight: 600;
+    font-weight: 400;
     font-size: 3vh;
     margin-bottom: auto;
     margin-top: 0;
@@ -177,6 +183,7 @@ body {
 #myImgLink-architecture {
     max-width: 40%;
     height: auto;
+    box-shadow: 15px 15px 60px -15px rgb(0 0 0 / 72%);
 }
 
 #see-more {
@@ -277,7 +284,7 @@ body {
 }
 
 .modal-securevault {
-    display: none;
+    display: flex;
     position: fixed;
     z-index: 1000;
     left: -90px;
@@ -287,10 +294,12 @@ body {
     background: rgba(128, 128, 128, 0.7);
     align-items: center;
     justify-content: center;
-    overflow: hidden; 
+    overflow: hidden;
+    display: none;
 }
 
 .modal-content-securevault {
+    position: relative; 
     background: linear-gradient(to bottom, #7dacd6 0%, #8db4d5 30%, #F0F9FF 70%, #F0F9FF 100%);
     padding: 20px;    
     border: 1px solid #888;
@@ -298,6 +307,64 @@ body {
     height: 85%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
+}
+
+.modal-content-securevault img {
+    /*display: flex;*/
+    flex-direction: column;
+    max-width: 40%;
+    max-height: 20%;
+    flex: 0 0 auto;
+    align-items: center;
+}
+
+.modal-securevault-text {
+    color: #707f9ca6;
+    text-align: left;
+    font-size: 2vh;
+}
+
+.carousel-container {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center; 
+}
+
+.carousel-slide {
+    display: flex; /* Display images in a row */
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide img {
+    width: auto; /* Adjust width automatically to maintain aspect ratio */
+    max-width: 45%;
+    display: block; /* Remove flex styles, let the container handle layout */
+    object-fit: contain; /* Ensure the image fits within its assigned space */
+    margin: 0 2.5%; /* Add margin to both sides of each image */
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 35%;
+    background-color: rgb(96 156 191 / 44%);
+    color: #656cb9;
+    border: 0px;
+    border-radius: 7px;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.prev {
+    left: 10px;
+}
+  
+.next {
+    right: 10px;
 }
 
 .modal-architecture {
@@ -346,6 +413,7 @@ body {
     object-fit: contain; 
     transition: transform 0.3s ease;
     cursor: zoom-in; 
+    box-shadow: 0 0px 25px 10px rgb(0 0 0 / 25%);
 }
 
 .zoomed-in {
@@ -367,6 +435,7 @@ body {
     right: 0.5em;
     top: 0.5em;
     z-index: 1011;
+    margin-top: -1.4%;
 }
 
 .close:hover, .close:focus {
@@ -410,6 +479,7 @@ body {
 
     #myImgLink-moncelour {
         max-width: 50%; 
+
     }
 
     .moncelour-section {

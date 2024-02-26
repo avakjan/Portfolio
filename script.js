@@ -111,6 +111,74 @@ document.addEventListener('DOMContentLoaded', () => {
       img.style.cursor = 'zoom-in';
     });
   }
+
+  const carouselSlide = document.querySelector('.carousel-slide');
+  const slides = Array.from(document.querySelectorAll('.modal-content-securevault img'));
+  const totalSlides = slides.length;
+  const prevButton = document.querySelector('.prev');
+  const nextButton = document.querySelector('.next');
+  let currentSlideIndex = 1; // Assuming the first slide is a clone of the last
+
+  // Calculate the width of a slide based on the carousel's width
+  const slideWidth = carouselSlide.clientWidth / 2; // Assuming 2 slides visible at a time
+
+  // Move the carousel to the start position (first original slide)
+  carouselSlide.style.transform = `translateX(-${slideWidth}px)`;
+
+  function moveSlide(step) {
+      currentSlideIndex += step;
+      let newTransformValue = -(slideWidth * currentSlideIndex);
+
+      // Check for the end of the carousel and loop back
+      if (currentSlideIndex >= totalSlides - 1) {
+          currentSlideIndex = 1; // Reset to the first original slide
+          newTransformValue = -(slideWidth * currentSlideIndex);
+      } else if (currentSlideIndex <= 0) {
+          currentSlideIndex = totalSlides - 2; // Jump to the last original slide
+          newTransformValue = -(slideWidth * currentSlideIndex);
+      }
+
+      carouselSlide.style.transform = `translateX(${newTransformValue}px)`;
+  }
+
+  prevButton.addEventListener('click', () => moveSlide(-1));
+  nextButton.addEventListener('click', () => moveSlide(1));
+
+  // Listen for the end of transitions
+  carouselSlide.addEventListener('transitionend', () => {
+      // "Jump" to the clone slide without transition for infinite loop illusion
+      if (currentSlideIndex === totalSlides - 1) {
+          carouselSlide.style.transition = 'none';
+          currentSlideIndex = 1;
+          carouselSlide.style.transform = `translateX(-${slideWidth * currentSlideIndex}px)`;
+      } else if (currentSlideIndex === 0) {
+          carouselSlide.style.transition = 'none';
+          currentSlideIndex = totalSlides - 2;
+          carouselSlide.style.transform = `translateX(-${slideWidth * currentSlideIndex}px)`;
+      }
+
+      // Re-enable transition after "jump"
+      setTimeout(() => carouselSlide.style.transition = 'transform 0.5s ease-in-out', 0);
+  });
+
+  // Resetting carousel when modal is closed
+  const closeBtn1 = modal1.querySelector('.close');
+  closeBtn1.addEventListener('click', () => {
+    modal1.style.display = "none";
+    document.body.style.overflow = 'auto';
+    resetCarouselPosition(); // Ensure the carousel is reset properly
+  });
+
+  modal1.addEventListener('click', (event) => {
+    if (event.target === modal1) {
+      modal1.style.display = 'none';
+      document.body.style.overflow = 'auto';
+      resetCarouselPosition();
+    }
+  });
+
+  slidesContainer.addEventListener('click', (event) => event.stopPropagation());
+
 }); 
 
 function copyEmailToClipboard() {
