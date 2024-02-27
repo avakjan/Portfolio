@@ -60,7 +60,7 @@ body {
     flex-grow: 1;
     text-align: left;
     max-width: 650px;
-    color: #8b8b8b;
+    color: rgb(112, 127, 156, 0.75);
     font-size: 1.7em;
     line-height: 1.4;
 }
@@ -71,7 +71,7 @@ body {
     width: 400px;
     border-radius: 30px;
     border: none;
-    box-shadow: none;
+    box-shadow: -15px 15px 60px -15px rgb(0 0 0 / 72%);
 }
 
 
@@ -97,7 +97,7 @@ body {
 .portfolio-header, .portfolio-web, .portfolio-graphic {
     font-weight: lighter;
     font-size: 4em;
-    background-image: linear-gradient(to bottom, #1B006B, #3C85B0);
+    background-image: linear-gradient(to bottom, rgb(130 0 191 / 40%), rgb(65 194 220));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -113,6 +113,15 @@ body {
 .portfolio-entry img, .moncelour-section a, .architecture-section img {
     height: auto; 
     border-radius: 20px; 
+}
+
+.portfolio-entry img {
+    transition: transform 0.3s ease;
+}
+
+.portfolio-entry img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
 }
 
 #myImgLink-securevault {
@@ -136,6 +145,7 @@ body {
 }
 
 .moncelour-header {
+    color: rgb(101 115 143);
     font-weight: 400;
     font-size: 3vh;
     margin-bottom: auto;
@@ -143,7 +153,7 @@ body {
 }
 
 .moncelour-text {
-    color: #707f9ca6;
+    color: rgb(112, 127, 156, 0.75);
     font-size: 2.4vh;
 }
 
@@ -167,6 +177,7 @@ body {
 }
 
 .architecture-header {
+    color: rgb(101 115 143);
     font-weight: 400;
     font-size: 3vh;
     margin-bottom: auto;
@@ -175,7 +186,7 @@ body {
 }
 
 .architecture-text {
-    color: #707f9ca6;
+    color: rgb(112, 127, 156, 0.75);
     text-align: right;
     font-size: 2.4vh;
 }
@@ -492,6 +503,7 @@ body {
     z-index: 10;
     cursor: pointer;
     transition: transform 0.3s ease;
+    
 }
 
 .modal-content-architecture img.zoom-in {
