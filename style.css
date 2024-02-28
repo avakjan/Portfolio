@@ -310,6 +310,7 @@ body {
 }
 
 .modal-content-securevault {
+    display: flex; /* Use flexbox */
     position: relative; 
     background: linear-gradient(to bottom, #7dacd6 0%, #8db4d5 30%, #F0F9FF 70%, #F0F9FF 100%);
     padding: 20px;    
@@ -318,64 +319,59 @@ body {
     height: 85%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-}
-
-.modal-content-securevault img {
-    /*display: flex;*/
-    flex-direction: column;
-    max-width: 40%;
-    max-height: 20%;
-    flex: 0 0 auto;
-    align-items: center;
-}
-
-.modal-securevault-text {
-    color: #707f9ca6;
-    text-align: left;
-    font-size: 2vh;
-}
-
-.carousel-container {
-    display: flex;
-    width: 100%;
+    flex-wrap: wrap; /* Allows items to wrap as needed */
+    justify-content: space-around; /* Space out the child elements evenly */
+    align-items: center; /* Center items vertically */
     overflow: hidden;
-    align-items: center;
-    justify-content: center; 
 }
 
-.carousel-slide {
-    display: flex; /* Display images in a row */
-    transition: transform 0.5s ease-in-out;
+.carousel-item {
+    display: flex;
+    justify-content: center; /* Center children horizontally */
+    position: absolute;
+    top: 15%; /* Center children vertically */
+    gap: 3%; /* Space between images */
+    width: 100%;
+    display: none; /* Start with no items displayed */
+    opacity: 0; /* Start with items fully transparent */
+    transition: opacity 1s ease-in-out; /* Smooth transition for the opacity */
 }
 
-.carousel-slide img {
-    width: auto; /* Adjust width automatically to maintain aspect ratio */
-    max-width: 45%;
-    display: block; /* Remove flex styles, let the container handle layout */
-    object-fit: contain; /* Ensure the image fits within its assigned space */
-    margin: 0 2.5%; /* Add margin to both sides of each image */
+.carousel-item img {
+    width: 40%; /* Each image will take up half the width of the .carousel-item */
+    height: auto; /* Maintain the aspect ratio of the images */
+    object-fit: contain; /* Ensure the images are scaled properly */
     border-radius: 5px;
-    box-sizing: border-box;
 }
 
 .prev, .next {
     cursor: pointer;
     position: absolute;
-    top: 35%;
-    background-color: rgb(96 156 191 / 44%);
-    color: #656cb9;
-    border: 0px;
-    border-radius: 7px;
-    padding: 10px;
-    z-index: 1001;
+    top: 31%;
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    transform: translateY(-50%); /* Align the middle of the button with the middle of the modal */
+    z-index: 10;
 }
 
 .prev {
-    left: 10px;
+    left: 0;
+    border-radius: 0 3px 3px 0;
 }
-  
+
 .next {
-    right: 10px;
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgb(186 223 255);
 }
 
 .modal-architecture {

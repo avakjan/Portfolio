@@ -18,22 +18,75 @@ document.addEventListener('DOMContentLoaded', () => {
   const targets = document.querySelectorAll('.fade-in-scroll');
   targets.forEach(target => observer.observe(target));
 
-  //MODAL1
-  const modal1 = document.getElementById("myModal-securevault");
-  const imgLink1 = document.getElementById("myImgLink-securevault");
-  const span1 = document.getElementsByClassName("close")[0];
+  //MODAL SECUREVAULT
 
-  imgLink1.onclick = function() {
-    modal1.style.display = "flex";
-    document.body.style.overflow = 'hidden';
-  };
+  let slideIndex = 1;
+  showSlides(slideIndex = 1);
 
-  span1.onclick = function() {
-    modal1.style.display = "none";
-    document.body.style.overflow = 'auto';
-  };
+  function changeSlide(n) {
+      showSlides(slideIndex += n);
+  }
 
-  //MODAL2
+  function showSlides(n) {
+    let slides = document.getElementsByClassName("carousel-item");
+
+    // Correcting slideIndex boundaries
+    if (n > slides.length) {slideIndex = 1;}
+    if (n < 1) {slideIndex = slides.length;}
+
+    // Immediately start fading out visible slides
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.opacity = 0;
+    }
+
+    // After a fade-out, hide all slides, then immediately show the next slide without delay
+    setTimeout(() => {
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = 'none';
+        }
+
+        // Display the next slide and start fading it in
+        let nextSlide = slides[slideIndex - 1];
+        nextSlide.style.display = "flex";
+        // Use requestAnimationFrame to ensure display changes are applied before starting the opacity transition
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                nextSlide.style.opacity = 1;
+            });
+        });
+    }, 1000); // The timeout duration should match your CSS transition duration
+  }
+
+
+  document.getElementById('myImgLink-securevault').onclick = function() {
+    document.getElementById('myModal-securevault').style.display = "flex";
+    showSlides(slideIndex = 1); // Reset carousel to first slide when modal is opened
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  document.getElementsByClassName('close')[0].onclick = function() {
+      document.getElementById('myModal-securevault').style.display = "none";
+  }
+
+      // Add event listeners for the carousel buttons
+  document.querySelector('.prev').addEventListener('click', function() {
+    changeSlide(-1);
+  });
+
+  document.querySelector('.next').addEventListener('click', function() {
+    changeSlide(1);
+  });
+  /*
+  
+  
+  
+  here goes the modal securevault
+  
+  
+  
+  */
+
+  //MODAL ARCHITECTURE
   const modal2 = document.getElementById("myModal-architecture");
   const imgLink2 = document.getElementById("myImgLink-architecture");
   const span2 = document.getElementsByClassName("close")[1];
@@ -112,74 +165,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const carouselSlide = document.querySelector('.carousel-slide');
-  const slides = Array.from(document.querySelectorAll('.modal-content-securevault img'));
-  const totalSlides = slides.length;
-  const prevButton = document.querySelector('.prev');
-  const nextButton = document.querySelector('.next');
-  let currentSlideIndex = 1; // Assuming the first slide is a clone of the last
+});
 
-  // Calculate the width of a slide based on the carousel's width
-  const slideWidth = carouselSlide.clientWidth / 2; // Assuming 2 slides visible at a time
 
-  // Move the carousel to the start position (first original slide)
-  carouselSlide.style.transform = `translateX(-${slideWidth}px)`;
-
-  function moveSlide(step) {
-      currentSlideIndex += step;
-      let newTransformValue = -(slideWidth * currentSlideIndex);
-
-      // Check for the end of the carousel and loop back
-      if (currentSlideIndex >= totalSlides - 1) {
-          currentSlideIndex = 1; // Reset to the first original slide
-          newTransformValue = -(slideWidth * currentSlideIndex);
-      } else if (currentSlideIndex <= 0) {
-          currentSlideIndex = totalSlides - 2; // Jump to the last original slide
-          newTransformValue = -(slideWidth * currentSlideIndex);
-      }
-
-      carouselSlide.style.transform = `translateX(${newTransformValue}px)`;
-  }
-
-  prevButton.addEventListener('click', () => moveSlide(-1));
-  nextButton.addEventListener('click', () => moveSlide(1));
-
-  // Listen for the end of transitions
-  carouselSlide.addEventListener('transitionend', () => {
-      // "Jump" to the clone slide without transition for infinite loop illusion
-      if (currentSlideIndex === totalSlides - 1) {
-          carouselSlide.style.transition = 'none';
-          currentSlideIndex = 1;
-          carouselSlide.style.transform = `translateX(-${slideWidth * currentSlideIndex}px)`;
-      } else if (currentSlideIndex === 0) {
-          carouselSlide.style.transition = 'none';
-          currentSlideIndex = totalSlides - 2;
-          carouselSlide.style.transform = `translateX(-${slideWidth * currentSlideIndex}px)`;
-      }
-
-      // Re-enable transition after "jump"
-      setTimeout(() => carouselSlide.style.transition = 'transform 0.5s ease-in-out', 0);
-  });
-
-  // Resetting carousel when modal is closed
-  const closeBtn1 = modal1.querySelector('.close');
-  closeBtn1.addEventListener('click', () => {
-    modal1.style.display = "none";
-    document.body.style.overflow = 'auto';
-    resetCarouselPosition(); // Ensure the carousel is reset properly
-  });
-
-  modal1.addEventListener('click', (event) => {
-    if (event.target === modal1) {
-      modal1.style.display = 'none';
-      document.body.style.overflow = 'auto';
-      resetCarouselPosition();
-    }
-  });
-
-  slidesContainer.addEventListener('click', (event) => event.stopPropagation());
-
-}); 
 
 function copyEmailToClipboard() {
 
