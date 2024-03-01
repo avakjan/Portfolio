@@ -295,7 +295,7 @@ body {
 }
 
 .modal-securevault {
-    display: flex;
+    display: none;
     position: fixed;
     z-index: 1000;
     left: -90px;
@@ -306,72 +306,105 @@ body {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.modal-securevault.show {
+    display: flex;
+    opacity: 1;
 }
 
 .modal-content-securevault {
-    display: flex; /* Use flexbox */
-    position: relative; 
-    background: linear-gradient(to bottom, #7dacd6 0%, #8db4d5 30%, #F0F9FF 70%, #F0F9FF 100%);
-    padding: 20px;    
+    display: flex;
+    position: relative;
+    background: linear-gradient(to bottom, #ecffe2 0%, #ecffe2 25%, #e6e7eb 70%, #e6e7eb 100%);
     border: 1px solid #888;
     width: 70%;
     height: 85%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    flex-wrap: wrap; /* Allows items to wrap as needed */
-    justify-content: space-around; /* Space out the child elements evenly */
-    align-items: center; /* Center items vertically */
+    flex-wrap: wrap;
+    flex-direction: column;
     overflow: hidden;
 }
 
-.carousel-item {
-    display: flex;
-    justify-content: center; /* Center children horizontally */
-    position: absolute;
-    top: 15%; /* Center children vertically */
-    gap: 3%; /* Space between images */
+.modal-securevault-text {
+    max-width: 55rem;
+    font-weight: 400;
+    color: rgb(112 127 111 / 100%);
+    text-align: left;
+    font-size: 130%;
     width: 100%;
-    display: none; /* Start with no items displayed */
-    opacity: 0; /* Start with items fully transparent */
-    transition: opacity 1s ease-in-out; /* Smooth transition for the opacity */
+    margin-left: 8.5%;
+    margin-top: 28%;
+}
+
+.carousel-container {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: auto;
+    transition: opacity 1s ease-in-out;
+    margin: 0;
+}
+
+.carousel-item {
+    position: absolute;
+    top: 5%;
+    margin-top: 5rem;
+    justify-content: center;
+    gap: 3%;
+    width: 100%;
 }
 
 .carousel-item img {
-    width: 40%; /* Each image will take up half the width of the .carousel-item */
-    height: auto; /* Maintain the aspect ratio of the images */
-    object-fit: contain; /* Ensure the images are scaled properly */
+    width: 40%;
+    height: auto;
+    object-fit: contain;
     border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
+    cursor: zoom-in;
+    box-shadow: 0 0px 40px 5px rgb(0 0 0 / 15%);
 }
 
 .prev, .next {
     cursor: pointer;
     position: absolute;
-    top: 31%;
+    top: 30%;
     width: auto;
     padding: 16px;
-    color: white;
+    color: rgb(112 127 111 / 75%);
     font-weight: bold;
-    font-size: 18px;
+    font-size: 2rem;
     transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
     user-select: none;
-    transform: translateY(-50%); /* Align the middle of the button with the middle of the modal */
+    transform: translateY(-50%);
     z-index: 10;
+    transition: 0.6s ease;
 }
 
 .prev {
-    left: 0;
-    border-radius: 0 3px 3px 0;
+    left: 2.5%;
 }
 
 .next {
-    right: 0;
-    border-radius: 3px 0 0 3px;
+    right: 2.5%;
 }
 
 .prev:hover, .next:hover {
-    background-color: rgb(186 223 255);
+    color: #707070;
+}
+
+.modal-content-securevault img:hover {
+    transform: scale(1.1);
+    z-index: 10;
+    cursor: zoom-in;
+    transition: transform 0.3s ease;
 }
 
 .modal-architecture {
@@ -386,7 +419,7 @@ body {
     top: 0; 
     width: 100%; 
     height: 100%;
-    background: linear-gradient(to bottom, #75444acb 0%, #741a1acb 30%, #923535c7 70%, #790000b0 100%);
+    background: linear-gradient(to bottom, rgb(183 118 126 / 56%) 0%, #8e2a2ac7 30%, #923535c7 70%, rgb(183 118 126 / 56%) 100%);
     align-items: center;
     justify-content: center;
     overflow: hidden;
@@ -434,7 +467,7 @@ body {
 
 
 .close {
-    color: #775ec4cb;
+    color: rgb(112 127 111 / 75%);
     float: right;
     position: absolute;
     font-size: 60px;
@@ -443,10 +476,11 @@ body {
     top: 0.5em;
     z-index: 1011;
     margin-top: -1.4%;
+    transition: 0.6s ease;
 }
 
 .close:hover, .close:focus {
-    color: #3d8bb8d5;
+    color: #707070;
     text-decoration: none;
     cursor: pointer;
 }
@@ -497,7 +531,7 @@ body {
 .modal-content-architecture img:hover {
     transform: scale(1.1);
     z-index: 10;
-    cursor: pointer;
+    cursor: zoom-in;
     transition: transform 0.3s ease;
 }
 
@@ -505,5 +539,4 @@ body {
     transform: scale(2);
     z-index: 20;
     cursor: zoom-out;
-    transition: transform 0.3s ease;
 }
