@@ -251,3 +251,42 @@ function copyEmailToClipboard() {
     notification.style.display = 'none';
   }, 2000);
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  const canvas = document.getElementById('waveCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let noise = new SimplexNoise();
+  let speed = 0.002;
+  let blur = 10;
+  
+  function drawWave() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.filter = `blur(${blur}px)`;
+      let waveHeight = 90;
+      let waveFrequency = 0.01;
+      let waveSpeed = speed;
+      let time = Date.now() * waveSpeed;
+
+      ctx.beginPath();
+      for (let i = 0; i < canvas.width; i++) {
+          let y = canvas.height / 2 + waveHeight * Math.sin(i * waveFrequency + time);
+          ctx.lineTo(i, y);
+      }
+      ctx.strokeStyle = "#0000ff";
+      ctx.stroke();
+  }
+
+  function animate() {
+      requestAnimationFrame(animate);
+      drawWave();
+  }
+
+  animate();
+});
+
+
+
+
