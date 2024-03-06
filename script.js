@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const targets = document.querySelectorAll('.fade-in-scroll');
   targets.forEach(target => observer.observe(target));
 
-  //MODAL SECUREVAULT
+  
   let slideIndex = 1;
   showSlides(slideIndex = 1);
 
@@ -29,33 +29,33 @@ document.addEventListener('DOMContentLoaded', () => {
   function showSlides(n) {
     let slides = document.getElementsByClassName("carousel-item");
   
-    // Correcting slideIndex boundaries
+    
     if (n > slides.length) {slideIndex = 1;}
     if (n < 1) {slideIndex = slides.length;}
   
-    let currentSlideIndex = slideIndex - 1; // Store the current slideIndex
+    let currentSlideIndex = slideIndex - 1; 
   
-    // Start fading out the previous slide
+    
     let previousSlideIndex = (currentSlideIndex === 0 ? slides.length : currentSlideIndex) - 1;
     slides[previousSlideIndex].style.transition = 'opacity 1s';
     slides[previousSlideIndex].style.opacity = 0;
 
-    // Use setTimeout to ensure opacity transition finishes before display changes
+    
     setTimeout(() => {
       slides[previousSlideIndex].style.display = 'none';
     }, 1000);
   
-    // Display the next slide and start fading it in
+    
     let nextSlide = slides[slideIndex - 1];
     nextSlide.style.display = "flex";
     nextSlide.style.opacity = 0;
   
-    // Use requestAnimationFrame to ensure display changes are applied before starting the opacity transition
+    
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         nextSlide.style.opacity = 1;
   
-        // Attach zoom event listener to the images in the next slide
+        
         attachZoomListener(nextSlide);
       });
     });
@@ -64,10 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function attachZoomListener(slide) {
     let images = slide.querySelectorAll('img');
     images.forEach(img => {
-      // Remove any existing click event listeners
+      
       img.removeEventListener('click', zoomFunction);
 
-      // Attach new click event listener
+      
       img.addEventListener('click', zoomFunction);
     });
   }
@@ -110,33 +110,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('myImgLink-securevault').onclick = function() {
     resetZoom();
-    showSlides(slideIndex = 1); // Reset carousel to first slide when modal is opened
+    showSlides(slideIndex = 1); 
     let modal = document.getElementById('myModal-securevault');
     modal.style.display = "flex";
-    // Use requestAnimationFrame to ensure display changes are applied before starting the opacity transition
+    
     requestAnimationFrame(() => {
-      modal.classList.add('show'); // Add the 'show' class to fade in the modal
+      modal.classList.add('show'); 
     });
     document.body.style.overflow = 'hidden';
   }
 
-  // When the user clicks on <span> (x), close the modal
+  
   document.getElementsByClassName('close')[0].onclick = function() {
     let modal = document.getElementById('myModal-securevault');
-    modal.classList.remove('show'); // Remove the 'show' class to fade out the modal
-    // Wait for the transition to finish before hiding the modal
+    modal.classList.remove('show'); 
+    
     setTimeout(function() {
       modal.style.display = "none";
     }, 500);
     document.body.style.overflow = 'auto';
   }
 
-  // When the user clicks anywhere outside of the modal, close it
+  
   window.onclick = function(event) {
     if (event.target == document.getElementById('myModal-securevault')) {
       let modal = document.getElementById('myModal-securevault');
-      modal.classList.remove('show'); // Remove the 'show' class to fade out the modal
-      // Wait for the transition to finish before hiding the modal
+      modal.classList.remove('show'); 
+      
       setTimeout(function() {
         modal.style.display = "none";
       }, 500);
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Add event listeners for the carousel buttons
+  
   document.querySelector('.prev').addEventListener('click', function() {
     changeSlide(-1);
   });
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     changeSlide(1);
   });
 
-  //MODAL ARCHITECTURE
+  
   const modal2 = document.getElementById("myModal-architecture");
   const imgLink2 = document.getElementById("myImgLink-architecture");
   const span2 = document.getElementsByClassName("close")[1];
@@ -251,42 +251,3 @@ function copyEmailToClipboard() {
     notification.style.display = 'none';
   }, 2000);
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-  const canvas = document.getElementById('waveCanvas');
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  let noise = new SimplexNoise();
-  let speed = 0.002;
-  let blur = 10;
-  
-  function drawWave() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.filter = `blur(${blur}px)`;
-      let waveHeight = 90;
-      let waveFrequency = 0.01;
-      let waveSpeed = speed;
-      let time = Date.now() * waveSpeed;
-
-      ctx.beginPath();
-      for (let i = 0; i < canvas.width; i++) {
-          let y = canvas.height / 2 + waveHeight * Math.sin(i * waveFrequency + time);
-          ctx.lineTo(i, y);
-      }
-      ctx.strokeStyle = "#0000ff";
-      ctx.stroke();
-  }
-
-  function animate() {
-      requestAnimationFrame(animate);
-      drawWave();
-  }
-
-  animate();
-});
-
-
-
-

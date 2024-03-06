@@ -9,16 +9,7 @@ body {
     background: linear-gradient(to bottom, #7dacd6 5%, #f4faff 35%, #f4faff 100%);
     background-attachment: scroll;
     font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-  
+} 
 
 ::-webkit-scrollbar {
 	width: 17px;
@@ -39,12 +30,6 @@ canvas {
 ::-webkit-scrollbar-thumb:hover {
 	background: rgb(112, 127, 156, 0.8);
 }
-
-
-
-
-
-
 
 .fullpage {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -275,6 +260,19 @@ canvas {
     justify-content: center;
     align-items: center;
     gap: 20px;
+}
+
+.social-section-entry h3 {
+    color: rgb(101 115 143);
+}
+
+.social-section-entry img {
+    transition: transform 0.3s ease;
+}
+
+.social-section-entry img:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
 }
 
 .social-item {
